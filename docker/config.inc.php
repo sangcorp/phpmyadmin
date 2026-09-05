@@ -50,6 +50,13 @@ if ($absoluteUri !== '') {
     $cfg['PmaAbsoluteUri'] = $absoluteUri;
 }
 
+// The roster dashboard embeds phpMyAdmin in an iframe, served from its own
+// origin through the dashboard's /s/db proxy. Upstream's default sends
+// X-Frame-Options: DENY plus a frame-busting script, which blanks that iframe;
+// 'sameorigin' relaxes it to same-origin framing only, so third-party
+// clickjacking is still refused.
+$cfg['AllowThirdPartyFraming'] = roster_env('PMA_ALLOW_FRAMING', 'sameorigin');
+
 $cfg['UploadDir'] = '';
 $cfg['SaveDir'] = '';
 $cfg['TempDir'] = '/tmp';
