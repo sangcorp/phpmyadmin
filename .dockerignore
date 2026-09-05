@@ -1,0 +1,8 @@
+.git
+.github
+node_modules
+vendor
+test
+doc
+po
+examples
